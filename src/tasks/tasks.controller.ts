@@ -4,10 +4,10 @@ import { CreateTaskDto, UpdateTaskDto } from './dto/task.dto'
 
 @Controller('tasks')
 export class TasksController {
-  // se instancia en el constructor el tasksservice para poder utilizarlo dentro de la clase
+ 
   constructor(private tasksService: TasksService) { }
 
-  @Get() // Si se llama con un get a /tasks, se ejecute lo que está aca
+  @Get()
   getAllTasks() {
     return this.tasksService.getAllTasks();
   }
@@ -18,13 +18,13 @@ export class TasksController {
   }
 
   @Post()
-  createTask(@Body() newTask: CreateTaskDto) { // @Body() -> Trae info en formato JSON
-    // console.log(newTask);
+  createTask(@Body() newTask: CreateTaskDto) {
+   
     return this.tasksService.createTask(newTask.title, newTask.description);
   }
 
-  @Delete(':id') // Especificarle cuál va a ser el campo que se va a usar para eliminar un registro
-  deleteTask(@Param('id') id: string) { // NestJS toma el parametro de la url (se debe especificar el nombre del param) y lo guarda en el parametro "id"
+  @Delete(':id')
+  deleteTask(@Param('id') id: string) {
     return this.tasksService.deleteTask(id)
   }
 
